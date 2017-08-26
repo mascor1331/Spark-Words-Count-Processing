@@ -15,7 +15,7 @@ import java.io.IOException;
 @Controller
 public class RootController {
 
-    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
     public ModelAndView render() throws ServletException, IOException {
 
         return new ModelAndView("index");
