@@ -11,21 +11,20 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 
 @Injectable()
-export class SearchService {
-  baseUrl: string = '/api/v1';
-  queryUrl: string = '?words=';
+export class ProcessingService {
+  baseUrl: string = '/api/v1/wordsCount/';
 
   constructor(private http: Http) { }
 
-search(terms: Observable<string>) {
+  wordsCount(terms: Observable<string>) {
   return terms.debounceTime(400)
       .distinctUntilChanged()
-      .switchMap(term => this.searchEntries(term));
+      .switchMap(term => this.wordCountEntries(term));
 }
 
-searchEntries(term) {
+  wordCountEntries(term) {
   return this.http
-      .get(this.baseUrl + this.queryUrl + term)
+      .get(this.baseUrl  + term)
       .map(res => res.json());
 }
 }
